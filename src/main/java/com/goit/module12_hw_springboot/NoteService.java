@@ -19,17 +19,15 @@ public class NoteService {
 
     public Note add(Note note) {
         Random random = new Random();
-        note.setId(random.nextLong());
+        note.setId(random.nextLong(1000000));
         map.put(note.getId(), note);
         return note;
     }
 
     public void deleteById(long id) {
-        try {
-            map.remove(id);
-        } catch (Exception e) {
-            throw new RecordNotFound("Note was not found");
-        }
+            if (map.remove(id) == null) {
+                throw new RecordNotFound("Note was not found");
+            }
     }
 
     public void update(Note note) {
@@ -40,11 +38,10 @@ public class NoteService {
 
     public Note getById(long id) {
         Note result;
-        try {
             result = map.get(id);
-        } catch (Exception e) {
-            throw new RecordNotFound("Note was not found");
-        }
+            if (result == null) {
+                throw new RecordNotFound("Note was not found");
+            }
         return result;
     }
 }
