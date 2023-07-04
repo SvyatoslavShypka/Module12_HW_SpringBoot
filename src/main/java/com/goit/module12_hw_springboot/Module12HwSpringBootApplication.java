@@ -8,10 +8,5 @@ public class Module12HwSpringBootApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Module12HwSpringBootApplication.class, args);
-		NoteService noteService = new NoteService();
-
-
-
 	}
-
 }
